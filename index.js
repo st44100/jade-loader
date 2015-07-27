@@ -154,7 +154,7 @@ module.exports = function(source) {
 
 		if ('indent' == this.peek().type) {
 			ast.includeBlock().push(this.block());
-		} else if(!parser._mustBeInlined) {
+        } else if(!parser._mustBeInlined && (query.includeInline === undefined || query.includeInline === true)) {
 			ast = new nodes.Code("require(" + JSON.stringify(path) + ").call(this, locals)", true, false);
 			ast.line = this.line();
 		}
